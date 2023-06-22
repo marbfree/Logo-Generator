@@ -8,7 +8,7 @@ const questions = [
         message: 'Enter up to three characters for your logo text.'
     },
     {   type: 'input',
-        name: 'text color',
+        name: 'textColor',
         message: 'Please enter a text color.'
     },
     {
@@ -19,7 +19,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'shape color',
+        name: 'shapeColor',
         message: 'Please enter a shape color.'
     }
 ]
