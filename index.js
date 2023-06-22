@@ -31,7 +31,7 @@ function writeToFile(data) {
     console.log('Saved!');
   });}
 
-// TODO: Create a function to initialize app
+
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
