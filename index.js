@@ -1,10 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateShape = require('./utils/generateLogo');
+const { writeToFile } = require('fs/promises');
 const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 class LogoEl{
-    constructor(text, textColor){
+    constructor(text, textColor, shape){
         this.text = text;
         this.textColor = textColor
         this.text = ''
@@ -50,11 +50,11 @@ const questions = [
 ]
 
 
-function writeToFile(data) {
-    fs.writeFile('logo.svg', data, function (err) {
-    if (err) throw err;
-    console.log('Saved!');
-  });}
+// function writeToFile(data) {
+//     fs.writeFile('logo.svg', data, function (err) {
+//     if (err) throw err;
+//     console.log('Saved!');
+//   });}
 
 
 function init() { 
@@ -79,10 +79,10 @@ function init() {
         }
 
          const logoEl = new LogoEl(answers);
-         logoEl.setText(text, textColor);
-         logoEl.setShape(shape)
+         logoEl.setText(answers.text, answers.textColor);
+         logoEl.setShape(answers.shape)
         // console.log(applyLogo)
-        return writeToFile(logoEl);
+        return writeToFile('logo.svg', logoEl.render());
 
     }
 
