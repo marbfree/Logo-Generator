@@ -1,0 +1,9 @@
+function generateShape(data) {
+    return `
+    ${data.shape}
+    ${data.color}
+    ${data.text}
+    ${data.textColor}`
+}
+
+module.exports = generateShape

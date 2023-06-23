@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateLogo = require('./utils/generateLogo')
 
 const questions = [
     {
@@ -19,7 +20,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'shapeColor',
+        name: 'color',
         message: 'Please enter a shape color.'
     }
 ]
@@ -36,9 +37,9 @@ function init() {
     inquirer.prompt(questions)
     .then((answers) => {
         console.log(answers)
-        // const readmeString = generateMarkdown(answers)
-        // console.log(readmeString)
-    //     writeToFile(readmeString)
+        const applyLogo = generateLogo(answers)
+        console.log(applyLogo)
+        writeToFile(applyLogo)
     }
     )}
 
