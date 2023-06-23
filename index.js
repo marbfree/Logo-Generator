@@ -4,14 +4,17 @@ const { writeToFile } = require('fs/promises');
 const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 class LogoEl{
-    constructor(text, textColor, shape){
+    constructor(text, textColor){
         this.text = text;
-        this.textColor = textColor
+        this.textColor = textColor;
         this.text = ''
         this.textColor = ''
     }
     render(){
-        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
+        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        ${this.shape}
+        ${this.text}
+        </svg`
     }
     setText(text){
         this.text = `<text x="10" y="10">${text}</text>`
