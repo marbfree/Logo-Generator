@@ -1,21 +1,29 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateShape = require('./utils/generateLogo')
-// const { Square, Triangle, Circle } = require('./lib/shapes');
+const generateShape = require('./utils/generateLogo');
+const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
-// class Svg{
-//     constructor(){
-//         this.text = ''
-//         this.color = ''
-//     }
-//     render(){
-//         return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
-//     }
-//     setText(text){
-//         this.text = `<text x="10" y="10">${text}</text>`
-//     }
-//     setTextColor()
-// }
+class LogoEl{
+    constructor(text, textColor){
+        this.text = text;
+        this.textColor = textColor
+        this.text = ''
+        this.textColor = ''
+    }
+    render(){
+        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
+    }
+    setText(text){
+        this.text = `<text x="10" y="10">${text}</text>`
+    }
+    setTextColor(textColor){
+        this.textColor = textColor.render()
+    }
+    setShape(shape){
+        this.shape = shape;
+    }
+};
+
 
 
 const questions = [
@@ -52,11 +60,32 @@ function writeToFile(data) {
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
-        console.log(answers)
-        const applyLogo = generateShape(answers)
-        console.log(applyLogo)
-        writeToFile(applyLogo)
+        let shape;
+        switch (shape) {
+            case 'Square':
+                shapeType = new Square();
+                shapeType.setColor(color);
+                break;
+                
+            case 'Square':
+                shapeType = new Triangle();
+                shapeType.setColor(color);
+                break;
+
+            case 'Square':
+                shapeType = new Circle();
+                shapeType.setColor(color);
+                break;
+        }
+
+         const logoEl = new LogoEl(answers);
+         logoEl.setText(text, textColor);
+         logoEl.setShape(shape)
+        // console.log(applyLogo)
+        return writeToFile(logoEl);
+
     }
+
     )}
 
 // Function call to initialize app
