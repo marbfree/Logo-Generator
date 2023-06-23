@@ -1,6 +1,22 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateLogo = require('./utils/generateLogo')
+const generateShape = require('./utils/generateLogo')
+// const { Square, Triangle, Circle } = require('./lib/shapes');
+
+// class Svg{
+//     constructor(){
+//         this.text = ''
+//         this.color = ''
+//     }
+//     render(){
+//         return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
+//     }
+//     setText(text){
+//         this.text = `<text x="10" y="10">${text}</text>`
+//     }
+//     setTextColor()
+// }
+
 
 const questions = [
     {
@@ -37,7 +53,7 @@ function init() {
     inquirer.prompt(questions)
     .then((answers) => {
         console.log(answers)
-        const applyLogo = generateLogo(answers)
+        const applyLogo = generateShape(answers)
         console.log(applyLogo)
         writeToFile(applyLogo)
     }
