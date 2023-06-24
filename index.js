@@ -5,19 +5,20 @@ const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 class LogoEl{
     constructor(text){
-        if (text.length > 3) {
+        if (text.text.length > 3) {
             throw new Error('Text must be no more than 3 characters long.');
         }
-        this.text = ''
+        this.textEl = ''
+        this.shapeEl = ''
     }
     render(){
-        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
+        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">${this.shapeEl}${this.textEl}</svg>`
     }
-    setText(){
-        this.text = `<text x="10" y="10" "fill=${this.textColor}>${this.text}</text>`
+    setTextEl(text, textColor){
+        this.textEl = `<text x="10" y="10" "fill=${textColor}">${text}</text>`
     }
-    setShape(shape){
-        this.shape = shape;
+    setShapeEl(shape){
+        this.shapeEl = shape;
     }
 };
 
@@ -76,10 +77,9 @@ function init() {
         }
 
          const logoEl = new LogoEl(answers);
-         logoEl.setText(answers.text, answers.textColor);
-         logoEl.setShape(answers.shape)
-        // console.log(applyLogo)
-          return writeFile('logo.svg', logoEl.render());
+         logoEl.setTextEl(answers.text, answers.textColor);
+         logoEl.setShapeEl(answers.shape);
+         return writeFile('logo.svg', logoEl.render())
 
     }
 
