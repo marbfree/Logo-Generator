@@ -9,17 +9,17 @@ class LogoEl{
             throw new Error('Text must be no more than 3 characters long.');
         }
         this.textEl = ''
-        this.shapeEl = ''
+        // this.shapeEl = ''
     }
     render(){
         return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">${this.shapeEl}${this.textEl}</svg>`
     }
     setTextEl(text, textColor){
-        this.textEl = `<text x="10" y="10" "fill=${textColor}">${text}</text>`
+        this.textEl = `<text x="10" y="10" fill="${textColor}">${text}</text>`
     }
-    setShapeEl(shape){
-        this.shapeEl = shape;
-    }
+    // setShapeEl(shape){
+    //     this.shapeEl = shape;
+    // }
 };
 
 
@@ -65,20 +65,20 @@ function init() {
                 shapeType.setColor(color);
                 break;
                 
-            case 'Square':
+            case 'Triangle':
                 shapeType = new Triangle();
                 shapeType.setColor(color);
                 break;
 
-            case 'Square':
+            case 'Circle':
                 shapeType = new Circle();
                 shapeType.setColor(color);
                 break;
         }
-
+        
          const logoEl = new LogoEl(answers);
          logoEl.setTextEl(answers.text, answers.textColor);
-         logoEl.setShapeEl(answers.shape);
+        //  logoEl.setShapeEl(answers.shape);
          return writeFile('logo.svg', logoEl.render())
 
     }
