@@ -3,27 +3,6 @@ const inquirer = require('inquirer');
 const { writeFile } = require('fs/promises');
 const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
-class LogoEl{
-    constructor(text){
-        if (text.text.length > 3) {
-            throw new Error('Text must be no more than 3 characters long.');
-        }
-        this.textEl = ''
-        // this.shapeEl = ''
-    }
-    render(){
-        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">${this.shapeEl}${this.textEl}</svg>`
-    }
-    setTextEl(text, textColor){
-        this.textEl = `<text x="10" y="10" fill="${textColor}">${text}</text>`
-    }
-    // setShapeEl(shape){
-    //     this.shapeEl = shape;
-    // }
-};
-
-
-
 const questions = [
     {
         type: 'input',
@@ -47,14 +26,6 @@ const questions = [
     }
 ]
 
-
-// function writeToFile(data) {
-//     fs.writeFile('logo.svg', data, function (err) {
-//     if (err) throw err;
-//     console.log('Saved!');
-//   });}
-
-
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
@@ -75,14 +46,9 @@ function init() {
                 shapeType.setColor(color);
                 break;
         }
-        
-         const logoEl = new LogoEl(answers);
-         logoEl.setTextEl(answers.text, answers.textColor);
-        //  logoEl.setShapeEl(answers.shape);
-         return writeFile('logo.svg', logoEl.render())
 
+         return writeFile('logo.svg', answers.shapeType)
     }
-
     )}
 
 // Function call to initialize app
