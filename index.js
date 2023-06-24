@@ -1,26 +1,20 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const { writeToFile } = require('fs/promises');
+// const fs = require('fs');
+const { writeFile } = require('fs/promises');
 const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 class LogoEl{
-    constructor(text, textColor){
-        this.text = text;
-        this.textColor = textColor;
+    constructor(text){
+        if (text.length > 3) {
+            throw new Error('Text must be no more than 3 characters long.');
+        }
         this.text = ''
-        this.textColor = ''
     }
     render(){
-        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        ${this.shape}
-        ${this.text}
-        </svg`
+        return `<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">`
     }
-    setText(text){
-        this.text = `<text x="10" y="10">${text}</text>`
-    }
-    setTextColor(textColor){
-        this.textColor = textColor.render()
+    setText(){
+        this.text = `<text x="10" y="10" "fill=${this.textColor}>${this.text}</text>`
     }
     setShape(shape){
         this.shape = shape;
@@ -85,7 +79,7 @@ function init() {
          logoEl.setText(answers.text, answers.textColor);
          logoEl.setShape(answers.shape)
         // console.log(applyLogo)
-        return writeToFile('logo.svg', logoEl.render());
+          return writeFile('logo.svg', logoEl.render());
 
     }
 
