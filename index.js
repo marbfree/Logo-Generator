@@ -32,13 +32,13 @@ function init() {
         switch (shape) {
             case 'Square':
                 shapeType = new Square();
-                // shapeType.setColor(color);
+                shapeType.setColor(color);
                 // shapeType.setTextEl(text, textColor)
                 break;
                 
             case 'Triangle':
                 shapeType = new Triangle();
-                // shapeType.setColor(color);
+                shapeType.setColor(color);
                 break;
 
             case 'Circle':
@@ -47,9 +47,8 @@ function init() {
                 break;
         }
         
-        const logo = new Shape();
+        const logo = new Shape() 
         logo.setTextEl(answers.text, answers.textColor);
-        logo.setColor(answers.color);
         logo.setShape(answers.shape);
         
         return writeFile('logo.svg', logo.render(), err => {
