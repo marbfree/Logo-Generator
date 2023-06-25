@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const { writeFile } = require('fs/promises');
-const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
+const { Shape, Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 const questions = [
     {
@@ -47,9 +47,12 @@ function init() {
                 break;
         }
         
-        // const logo = shape.render()
+        const logo = new Shape();
+        logo.setTextEl(answers.text, answers.textColor);
+        logo.setColor(answers.color);
+        logo.setShape(answers.shape);
         
-        return writeFile('logo.svg', answers.shape, err => {
+        return writeFile('logo.svg', logo.render(), err => {
             if (err) {
             console.log('Error occured when writing to file')}})
         })
