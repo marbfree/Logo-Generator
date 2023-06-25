@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
 const { writeFile } = require('fs/promises');
 const { Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
@@ -33,12 +32,13 @@ function init() {
         switch (shape) {
             case 'Square':
                 shapeType = new Square();
-                shapeType.setColor(color);
+                // shapeType.setColor(color);
+                // shapeType.setTextEl(text, textColor)
                 break;
                 
             case 'Triangle':
                 shapeType = new Triangle();
-                shapeType.setColor(color);
+                // shapeType.setColor(color);
                 break;
 
             case 'Circle':
@@ -46,10 +46,15 @@ function init() {
                 shapeType.setColor(color);
                 break;
         }
-
-         return writeFile('logo.svg', answers.shapeType)
+        
+        // const logo = shape.render()
+        
+        return writeFile('logo.svg', answers.shape, err => {
+            if (err) {
+            console.log('Error occured when writing to file')}})
+        })
     }
-    )}
+    
 
 // Function call to initialize app
 init();
