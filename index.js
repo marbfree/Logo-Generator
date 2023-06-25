@@ -33,7 +33,6 @@ function init() {
             case 'Square':
                 shapeType = new Square();
                 shapeType.setColor(color);
-                // shapeType.setTextEl(text, textColor)
                 break;
                 
             case 'Triangle':
