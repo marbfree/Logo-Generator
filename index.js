@@ -3,12 +3,14 @@ const { writeFile } = require('fs/promises');
 const { Shape, Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
 const questions = [
-    {
+    {   
         type: 'input',
         name: 'text',
-        message: 'Enter up to three characters for your logo text.'
+        message: 'Enter up to three characters for your logo text.' 
+        // validate: (text) => text.length < 3 || text.length > 3 || 'Characters must be', 
     },
-    {   type: 'input',
+    {   
+        type: 'input',
         name: 'textColor',
         message: 'Please enter a text color.'
     },
@@ -28,8 +30,11 @@ const questions = [
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
+        let shapeType;
+        console.log(answers)
         switch (answers.shape) {
             case 'Square':
+                
                 shapeType = new Square();
                 shapeType.setColor(answers.color);
                 break;
@@ -46,9 +51,8 @@ function init() {
         }
         
         const logo = new Shape() 
-        logo.setTextEl(answers.text, answers.textColor);
-        logo.setShape(answers.shape);
-    
+        logo.setText(answers.text, answers.textColor);
+        logo.setShape(shapeType);
         
         return writeFile('logo.svg', logo.render(), err => {
             if (err) {
