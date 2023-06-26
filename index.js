@@ -28,36 +28,34 @@ const questions = [
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
-        let shape;
-        switch (shape) {
+        switch (answers.shape) {
             case 'Square':
                 shapeType = new Square();
-                shapeType.setColor(color);
+                shapeType.setColor(answers.color);
                 break;
                 
             case 'Triangle':
                 shapeType = new Triangle();
-                shapeType.setColor(color);
+                shapeType.setColor(answers.color);
                 break;
 
             case 'Circle':
                 shapeType = new Circle();
-                shapeType.setColor(color);
+                shapeType.setColor(answers.color);
                 break;
         }
         
         const logo = new Shape() 
         logo.setTextEl(answers.text, answers.textColor);
         logo.setShape(answers.shape);
+    
         
         return writeFile('logo.svg', logo.render(), err => {
             if (err) {
             console.log('Error occured when writing to file')}})
         })
     }
-    
-
 // Function call to initialize app
 init();
 
-
+// module.exports = logo
