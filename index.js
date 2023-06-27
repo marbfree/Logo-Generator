@@ -6,8 +6,8 @@ const questions = [
     {   
         type: 'input',
         name: 'text',
-        message: 'Enter up to three characters for your logo text.' 
-        // validate: (text) => text.length < 3 || text.length > 3 || 'Characters must be', 
+        message: 'Enter up to three characters for your logo text.', 
+        validate: (text) => text.length > 0 || text.length > 3 || 'Input must be between 1 and 3 characters in length.', 
     },
     {   
         type: 'input',
@@ -36,23 +36,24 @@ function init() {
             case 'Square':
                 
                 shapeType = new Square();
-                shapeType.setColor(answers.color);
+                // shapeType.setColor(answers.color);
                 break;
                 
             case 'Triangle':
                 shapeType = new Triangle();
-                shapeType.setColor(answers.color);
+                // shapeType.setColor(answers.color);
                 break;
 
             case 'Circle':
                 shapeType = new Circle();
-                shapeType.setColor(answers.color);
+                // shapeType.setColor(answers.color);
                 break;
         }
         
         const logo = new Shape() 
         logo.setText(answers.text, answers.textColor);
         logo.setShape(shapeType);
+        // logo.setColor(answers.color);
         
         return writeFile('logo.svg', logo.render(), err => {
             if (err) {
