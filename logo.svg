@@ -1,1 +1,1 @@
-<svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="150, 0 270, 182 0, 182" fill="undefined"/><text x="140" y="140" font-size="3em" text-anchor="middle" fill="red">mdb</text></svg>
+<svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="300" height="300" fill="blue"/><text x="140" y="120" font-size="4em" text-anchor="middle" fill="green">SVG</text></svg>

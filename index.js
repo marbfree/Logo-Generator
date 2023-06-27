@@ -36,31 +36,31 @@ function init() {
             case 'Square':
                 
                 shapeType = new Square();
-                // shapeType.setColor(answers.color);
+                shapeType.setColor(answers.color);
                 break;
                 
             case 'Triangle':
                 shapeType = new Triangle();
-                // shapeType.setColor(answers.color);
+                shapeType.setColor(answers.color);
                 break;
 
             case 'Circle':
                 shapeType = new Circle();
-                // shapeType.setColor(answers.color);
+                shapeType.setColor(answers.color);
                 break;
         }
         
         const logo = new Shape() 
         logo.setText(answers.text, answers.textColor);
         logo.setShape(shapeType);
-        // logo.setColor(answers.color);
+        // logo.setColor(shapeType.color);
         
         return writeFile('logo.svg', logo.render(), err => {
             if (err) {
-            console.log('Error occured when writing to file')}})
+            console.log(err)}
         })
+        }) 
     }
 // Function call to initialize app
 init();
 
-// module.exports = logo
