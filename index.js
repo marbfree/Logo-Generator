@@ -1,7 +1,9 @@
+// importing files and libraries
 const inquirer = require('inquirer');
 const { writeFile } = require('fs/promises');
 const { Shape, Square, Triangle, Circle } = require('../Logo-Generator/lib/shapes');
 
+// prompts to intake user input
 const questions = [
     {   
         type: 'input',
@@ -27,6 +29,7 @@ const questions = [
     }
 ]
 
+// creates the logo from user input, runs the Shape constructor
 function init() { 
     inquirer.prompt(questions)
     .then((answers) => {
@@ -53,7 +56,6 @@ function init() {
         const logo = new Shape() 
         logo.setText(answers.text, answers.textColor);
         logo.setShape(shapeType);
-        // logo.setColor(shapeType.color);
         
         return writeFile('logo.svg', logo.render(), err => {
             if (err) {
